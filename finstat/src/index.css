@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+}
+
+.num {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum' 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ledger-card {
+  @apply bg-white border border-line rounded-sm p-4 relative;
+}
+
+.ledger-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+
+.ledger-card.dir-up::before { @apply bg-ledger; }
+.ledger-card.dir-down::before { @apply bg-rose; }
+.ledger-card.dir-flat::before { @apply bg-line; }
+
+::selection {
+  background: #2F6F6233;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+}
